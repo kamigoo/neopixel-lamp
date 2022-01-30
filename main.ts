@@ -1,9 +1,21 @@
-let A_released = false
-let strip = neopixel.create(DigitalPin.P1, 5, NeoPixelMode.RGB)
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A) && A_released) {
-        A_released = false
-        led.toggle(0, 0)
+input.onButtonPressed(Button.A, function () {
+    while (!(input.buttonIsPressed(Button.B))) {
+        strip.rotate(2)
+        strip.show()
+        basic.pause(100)
     }
-    A_released = !(input.buttonIsPressed(Button.A))
 })
+input.onButtonPressed(Button.B, function () {
+    while (!(input.buttonIsPressed(Button.A))) {
+        led2 = randint(0, 9)
+        color = neopixel.rgb(randint(0, 255), randint(0, 255), randint(0, 255))
+        strip.setPixelColor(led2, color)
+        strip.show()
+        basic.pause(100)
+    }
+})
+let color = 0
+let led2 = 0
+let strip: neopixel.Strip = null
+strip = neopixel.create(DigitalPin.P1, 5, NeoPixelMode.RGB)
+strip.showRainbow(1, 360)
