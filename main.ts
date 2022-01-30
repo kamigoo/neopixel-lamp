@@ -1,10 +1,9 @@
-let color = 0
-let led2 = 0
-let strip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
-basic.showString("LED")
+let A_released = false
+let strip = neopixel.create(DigitalPin.P1, 5, NeoPixelMode.RGB)
 basic.forever(function () {
-    led2 = randint(0, 9)
-    color = neopixel.rgb(randint(0, 255), randint(0, 255), randint(0, 255))
-    strip.setPixelColor(led2, color)
-    strip.show()
+    if (input.buttonIsPressed(Button.A) && A_released) {
+        A_released = false
+        led.toggle(0, 0)
+    }
+    A_released = !(input.buttonIsPressed(Button.A))
 })
