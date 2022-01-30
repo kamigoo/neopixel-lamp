@@ -1,8 +1,8 @@
 input.onButtonPressed(Button.A, function () {
     while (!(input.buttonIsPressed(Button.B))) {
-        strip.rotate(2)
+        strip.rotate(1)
         strip.show()
-        basic.pause(100)
+        basic.pause(500)
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -13,9 +13,12 @@ input.onButtonPressed(Button.B, function () {
         strip.show()
         basic.pause(100)
     }
+    strip = neopixel.create(DigitalPin.P1, 6, NeoPixelMode.RGB)
+    strip.showRainbow(1, 360)
 })
 let color = 0
 let led2 = 0
 let strip: neopixel.Strip = null
-strip = neopixel.create(DigitalPin.P1, 5, NeoPixelMode.RGB)
+basic.showString("L")
+strip = neopixel.create(DigitalPin.P1, 6, NeoPixelMode.RGB)
 strip.showRainbow(1, 360)
